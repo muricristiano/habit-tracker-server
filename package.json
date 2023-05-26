@@ -1,0 +1,22 @@
+{
+  "name": "habit-tracker-server",
+  "version": "1.0.0",
+  "description": "Server - Habit Tracker App (Web/Mobile)",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.3.0",
+    "@prisma/client": "^4.14.1",
+    "fastify": "^4.17.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.14.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4"
+  }
+}
