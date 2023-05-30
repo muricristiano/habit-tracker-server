@@ -32,7 +32,7 @@ export async function appRoutes(app: FastifyInstance){
         })
     })
 
-    // ROUTE B. Get Day
+    // ROUTE 2. Get Day
     app.get('/day', async (req) => {
         const getDayParams = z.object({
             date: z.coerce.date()
@@ -80,5 +80,88 @@ export async function appRoutes(app: FastifyInstance){
             completedHabits,
         }
 
+    })
+
+    // ROUTE 3. Toggle habit done.
+    app.patch('/habits/:id/toggle', async (request) => {
+        
+        const toggleHabitParams = z.object({
+            id: z.string().uuid(),
+        })
+
+        const { id } = toggleHabitParams.parse(request.params)
+
+        const today = dayjs().startOf('day').toDate()
+
+        //Looks if is there already completed the habit
+        let day = await prisma.day.findUnique({
+            where: {
+                date: today
+            }
+        })
+
+        //If not completed, create a register of the day completing the habit
+        if (!day) {
+            day = await prisma.day.create({
+                data: {
+                    date: today
+                }
+            })
+        }
+
+        const dayHabit = await prisma.dayHabit.findUnique({
+            where: {
+                // Field UNIQUE, its relational on the Table, allows this selection on the line below:
+                day_id_habit_id: { 
+                    day_id: day.id,
+                    habit_id: id
+                }
+            }
+        })
+
+        if (dayHabit) {
+            // If complete, remove the completion
+            await prisma.dayHabit.delete({
+                where: {
+                    id: dayHabit.id
+                }
+            })
+        }
+
+        //Having the register of day_id, and the habit_id received trough the params, we register a habit completion on a day
+        await prisma.dayHabit.create({
+            data: {
+                day_id: day.id,
+                habit_id: id
+            }
+        })
+    })
+
+    // ROUTE 4. Get summary information, with % of completion on each day of available habits for every specific day
+    app.get('/summary', async () => {
+        const summary = await prisma.$queryRaw`
+            SELECT 
+                D.id, 
+                D.date,
+                (
+                    SELECT 
+                        cast(count(*) as float)
+                    FROM day_habits DH
+                    WHERE DH.day_id = D.id
+                ) as completed,
+                (
+                    SELECT
+                        cast(count(*) as float)
+                    FROM habit_week_days HWD
+                    JOIN habits H
+                        ON H.id = HWD.habit_id
+                    WHERE 
+                        HWD.week_day = cast(strftime('%w', D.date/1000.0, 'unixepoch' ) as int)
+                        AND H.created_at <= D.date
+                ) as available
+            FROM days D
+            `
+
+        return summary
     })
 }
