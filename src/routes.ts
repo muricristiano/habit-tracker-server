@@ -126,8 +126,7 @@ export async function appRoutes(app: FastifyInstance){
                     id: dayHabit.id
                 }
             })
-        }
-
+        }else{
         //Having the register of day_id, and the habit_id received trough the params, we register a habit completion on a day
         await prisma.dayHabit.create({
             data: {
@@ -135,7 +134,9 @@ export async function appRoutes(app: FastifyInstance){
                 habit_id: id
             }
         })
-    })
+    }
+}) 
+
 
     // ROUTE 4. Get summary information, with % of completion on each day of available habits for every specific day
     app.get('/summary', async () => {
