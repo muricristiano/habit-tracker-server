@@ -73,7 +73,7 @@ export async function appRoutes(app: FastifyInstance){
         // Check if have at least one habit completed on selected day. (Or would get error, since 'day' would be null)
         const completedHabits = day?.dayHabits.map(dayHabit => {
             return dayHabit.habit_id
-        }) 
+        }) ?? []
 
         return {
             possibleHabits,
