@@ -1,67 +1,44 @@
-habit-tracker-server
-====================
-- Server - Habit Tracker App (Web/Mobile)
-- Node
-- Fastify = {}
-- CORS = Access Project Security
-- Banco de Dados: Prisma (ORM) -  
+# habit-tracker-server
+This repository contains the server-side code for the Habit Tracker web and mobile application. It is built with Node.js and utilizes various libraries and packages for different functionalities.
 
-> PORTUGUESE NOTES:
+## Technologies Used
 
-PACKAGES:
-==========
+### Node.js
+Node.js is a JavaScript runtime that allows developers to build scalable and high-performance applications on the server-side. It provides an event-driven, non-blocking I/O model that makes it lightweight and efficient.
 
-### fastify
-framework para dentro do node, similar ao express, porém, utilizaremos o fastify por estar sendo mais performático que o express e recebendo mais suporte
-### @prisma/client
-Client do prisma, dependencia para poder acessar o banco de dados dentro da aplicação.
+### Fastify
+Fastify is a web framework for Node.js that aims to be highly performant. It is similar to Express but has a focus on speed and low overhead. Fastify provides a robust foundation for building scalable and efficient server applications.
 
-> npx prisma init --datasource-provider SQLite
-utilizaremos SQLite (Não MySQL, não postgres, pois o SQLite cria um arquivo local de banco de dados e assim não precisaremos de um docker para subir um banco de dados local)
+### CORS
+CORS (Cross-Origin Resource Sharing) is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the resource originated. The @fastify/cors package integrates CORS functionality into Fastify, enabling the server to handle cross-origin requests securely.
 
-### @fastify/cors
-integração do CORS (Cross Origin Resource Sharing) com o fastify, gerencia quais aplicações podem acessar a aplicação back end
+### Prisma
+Prisma is an ORM (Object-Relational Mapping) tool that simplifies database access and management. It provides a type-safe and auto-generated query builder for TypeScript and JavaScript applications. In this project, Prisma is used as the database ORM.
 
-### zod
-Validation to routes with types for typescript
+### SQLite
+SQLite is a lightweight, file-based database engine that doesn't require a separate server process. It is used as the database provider for this application, allowing for easy setup and local development without the need for additional dependencies like MySQL or PostgreSQL.
 
-### dayjs
-DateTime API Library on Typescript
+### Zod
+Zod is a TypeScript-first schema validation library. It allows for type-safe validations and ensures that data conforms to specified schemas. In the habit tracker server, Zod is used for validating routes and enforcing type safety.
 
-### web-push
-> npm i web-push
-Allow sending push notifications from back-end to the front-end without requiring the application to be open or third api/aplication/service. Just with service workers.
+### Day.js
+Day.js is a lightweight and modern JavaScript library for manipulating, parsing, and formatting dates and times. It provides an easy-to-use API for working with dates in TypeScript and JavaScript applications.
 
 
+## Development Packages
+The following development packages are used in this project:
 
+### TypeScript
+TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. It provides static typing, type checking, and advanced tooling support, resulting in improved code quality, maintainability, and developer productivity.
 
-DEVELOPMENT PACKAGES:
-==============
+### ts-node
+Ts-node is a TypeScript execution engine and REPL (Read-Eval-Print Loop) for Node.js. It allows for running TypeScript files directly without the need for manual compilation. It simplifies the development workflow by eliminating the need for an additional build step.
 
-### typescript
-linguagem tipada, cobertura e segurança de código. (npx tsc --init)
+### Prisma
+Prisma is used not only as the ORM but also as a development tool. It integrates seamlessly with TypeScript and provides automatic code generation, type safety, and validation during development. Prisma ensures that the database operations are aligned with the defined schema and helps prevent errors.
 
-### tsx 
-Permite executarmos arquivos Typescript pelo Node, sem precisar fazer conversão. (Utilizar "npx tsx src/server.ts", ou adicionar um scripts do projeto)
+### prisma-erd-generator and mermaid-cli
+These development packages are used to generate an Entity-Relationship Diagram (ERD) from the Prisma schema. By executing the command npx prisma generate, an ERD.svg file is created in the Prisma folder, providing a visual representation of the table relations.
 
-### prisma 
-ORM que utilizaremos (Integrado com o Typescript, vai sempre orientar o caminho correto, evitará criar dados e inserir dados que não existem na tabela, já acusará erro caso falte algo, totalmente integrado no nível de desenvolvimento do código)
-
-### prisma-erd-generator @mermaid-js/mermaid-cli
-(+ adding to schema.prisma the following code below the prisma client:
-    generator erd {
-        provider = "prisma-erd-generator"
-    }
-)
-
-for the end, execute:
-> npx prisma generate
-This way creates an ERD.svg on the prisma folder, that is a representation of the tables relations.
-
-### seed prisma
-1. create the seed.ts code inside of prisma folder
-2. adding to package.json, on the prisma atributes what is there for seed execution.
-
-### @types/web-push
-> npm i @types/web-push -D
-Install also the types of Web-push as Dev Dependecies to TypeScript Intelissense
+### Seed Prisma
+Seed Prisma is a mechanism for populating the database with initial or test data. It involves creating a seed.ts file inside the Prisma folder, which contains the code for seeding the database. Additionally, the necessary configurations are added to the package.json file to enable the execution of the seed script.
