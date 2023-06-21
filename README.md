@@ -24,7 +24,6 @@ Zod is a TypeScript-first schema validation library. It allows for type-safe val
 ### Day.js
 Day.js is a lightweight and modern JavaScript library for manipulating, parsing, and formatting dates and times. It provides an easy-to-use API for working with dates in TypeScript and JavaScript applications.
 
-
 ## Development Packages
 The following development packages are used in this project:
 
@@ -40,5 +39,5 @@ Prisma is used not only as the ORM but also as a development tool. It integrates
 ### prisma-erd-generator and mermaid-cli
 These development packages are used to generate an Entity-Relationship Diagram (ERD) from the Prisma schema. By executing the command npx prisma generate, an ERD.svg file is created in the Prisma folder, providing a visual representation of the table relations.
 
-### Seed Prisma
+Seed Prisma
 Seed Prisma is a mechanism for populating the database with initial or test data. It involves creating a seed.ts file inside the Prisma folder, which contains the code for seeding the database. Additionally, the necessary configurations are added to the package.json file to enable the execution of the seed script.
