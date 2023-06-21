@@ -28,6 +28,12 @@ Validation to routes with types for typescript
 ### dayjs
 DateTime API Library on Typescript
 
+### web-push
+> npm i web-push
+Allow sending push notifications from back-end to the front-end without requiring the application to be open or third api/aplication/service. Just with service workers.
+
+
+
 
 DEVELOPMENT PACKAGES:
 ==============
@@ -55,3 +61,7 @@ This way creates an ERD.svg on the prisma folder, that is a representation of th
 ### seed prisma
 1. create the seed.ts code inside of prisma folder
 2. adding to package.json, on the prisma atributes what is there for seed execution.
+
+### @types/web-push
+> npm i @types/web-push -D
+Install also the types of Web-push as Dev Dependecies to TypeScript Intelissense
