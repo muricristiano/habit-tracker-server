@@ -21,8 +21,17 @@ SQLite is a lightweight, file-based database engine that doesn't require a separ
 ### Zod
 Zod is a TypeScript-first schema validation library. It allows for type-safe validations and ensures that data conforms to specified schemas. In the habit tracker server, Zod is used for validating routes and enforcing type safety.
 
+<<<<<<< HEAD
 ### Day.js
 Day.js is a lightweight and modern JavaScript library for manipulating, parsing, and formatting dates and times. It provides an easy-to-use API for working with dates in TypeScript and JavaScript applications.
+=======
+### web-push
+> npm i web-push
+Allow sending push notifications from back-end to the front-end without requiring the application to be open or third api/aplication/service. Just with service workers.
+
+
+
+>>>>>>> c4639df7579295e0adf1111f5efbb1d034e937ad
 
 ## Development Packages
 The following development packages are used in this project:
@@ -39,5 +48,19 @@ Prisma is used not only as the ORM but also as a development tool. It integrates
 ### prisma-erd-generator and mermaid-cli
 These development packages are used to generate an Entity-Relationship Diagram (ERD) from the Prisma schema. By executing the command npx prisma generate, an ERD.svg file is created in the Prisma folder, providing a visual representation of the table relations.
 
+<<<<<<< HEAD
 Seed Prisma
 Seed Prisma is a mechanism for populating the database with initial or test data. It involves creating a seed.ts file inside the Prisma folder, which contains the code for seeding the database. Additionally, the necessary configurations are added to the package.json file to enable the execution of the seed script.
+=======
+for the end, execute:
+> npx prisma generate
+This way creates an ERD.svg on the prisma folder, that is a representation of the tables relations.
+
+### seed prisma
+1. create the seed.ts code inside of prisma folder
+2. adding to package.json, on the prisma atributes what is there for seed execution.
+
+### @types/web-push
+> npm i @types/web-push -D
+Install also the types of Web-push as Dev Dependecies to TypeScript Intelissense
+>>>>>>> c4639df7579295e0adf1111f5efbb1d034e937ad
